@@ -7,8 +7,7 @@ public class Student {
     private String name;
     private String DOB;
     private Character gender;
-    final Character MALE = 'm';
-    final Character FEMALE = 'f';
+    private final Character MALE = 'm';
 
     public Student(int id, String name, String DOB, Character gender) {
         Id = id;
