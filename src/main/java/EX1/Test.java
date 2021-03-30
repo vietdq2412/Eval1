@@ -24,7 +24,7 @@ public class Test {
         addStudent(student5, arr);
         addStudent(new Student(7, "lam", "15/03/2000", 'm'), arr);
 
-        System.out.println(getAge(student2));
+        System.out.println("get age: "+getAge(student2));
 
         printAllByYear(2004, arr);
 
@@ -35,7 +35,8 @@ public class Test {
 
     private static void printAllByYear(int birthYear, Student[] arr) {
         for (int i = 0; i < numStudent; i++) {
-            int sYear = Integer.parseInt(arr[i].getDOB().substring(6, 10));
+//            int sYear = Integer.parseInt(arr[i].getDOB().substring(6, 10));
+            int sYear = arr[i].getDOB().getYear()+1900;
             if (sYear == birthYear) {
                 arr[i].print();
             }
@@ -62,7 +63,8 @@ public class Test {
     private static int getAge(Student student) {
         Date d = new Date();
         int recentYear = d.getYear() + 1900;
-        int birthYear = Integer.parseInt(student.getDOB().substring(6, 10));
+//        int birthYear = Integer.parseInt(student.getDOB().substring(6, 10));
+        int birthYear = student.getDOB().getYear()+1900;
         int age = recentYear - birthYear;
         return age;
     }

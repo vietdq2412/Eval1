@@ -1,18 +1,24 @@
 package EX1;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Student {
     private int Id;
     private String name;
-    private String DOB;
+    private Date DOB;
     private Character gender;
     private final Character MALE = 'm';
 
     public Student(int id, String name, String DOB, Character gender) {
         Id = id;
         this.name = name;
-        this.DOB = DOB;
+        try {
+            this.DOB = new SimpleDateFormat("dd/mm/yyyy").parse(DOB);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.gender = gender;
     }
 
@@ -25,7 +31,7 @@ public class Student {
         return name;
     }
 
-    public String getDOB() {
+    public Date getDOB() {
         return DOB;
     }
 
@@ -42,7 +48,11 @@ public class Student {
     }
 
     public void setDOB(String DOB) {
-        this.DOB = DOB;
+        try {
+            this.DOB = new SimpleDateFormat("dd/mm/yyyy").parse(DOB);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setGender(Character gender) {
@@ -57,6 +67,8 @@ public class Student {
         }else {
             gender = "female";
         }
-        System.out.printf("\n|ID: %-5d |Name: %-10s|DOB: %-15s|Gender: %s",Id,name,DOB,gender);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String dob = formatter.format(DOB);
+        System.out.printf("\n|ID: %-5d |Name: %-10s|DOB: %-15s|Gender: %s",Id,name,dob,gender);
     }
 }
